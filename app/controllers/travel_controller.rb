@@ -52,7 +52,7 @@ class TravelController < ApplicationController
    @travel = Travel.find_by_id(params[:id])
     if params[:location] != nil && params[:activity] != nil && params[:date] != nil
       @travel.update(:location => params[:location], :activity => params[:activity], :date => params[:date])
-      redirect to :'/travels/#{@travel.id}'
+      redirect to :"/travels/#{@travel.id}"
     else
       redirect to '/'
     end
@@ -60,7 +60,14 @@ class TravelController < ApplicationController
  end
 
   delete '/travels/:id/delete' do
-
-   erb :'/travels/delete'
- end
+    if logged_in?
+       @travel = Travel.find_by_id(params[:id])
+       if @travel.user_id = current_user.id
+         @travel.delete
+    erb :'/travels/delete'
+      else
+        "/"
+      end
+    end
+  end
 end
