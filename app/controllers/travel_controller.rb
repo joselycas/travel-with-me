@@ -53,10 +53,14 @@ class TravelController < ApplicationController
     if params[:location] != nil && params[:activity] != nil && params[:date] != nil
       @travel.update(:location => params[:location], :activity => params[:activity], :date => params[:date])
       redirect to :'/travels/#{@travel.id}'
-
     else
       redirect to '/'
     end
-end
+  end
+ end
+
+  delete '/travels/:id/delete' do
+
+   erb :'/travels/delete'
  end
 end
