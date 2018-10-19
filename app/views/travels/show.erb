@@ -1,0 +1,9 @@
+<h1> Here are your travels,  <%= current_user.user_name %> </h1>
+
+<% @travels.each do |travel| %>
+Location: <%= travel.location %><br>
+Activity: <%= travel.activity %> <br>
+Travel Date: <%= travel.date %> <br>
+<% end %> <br>
+
+<a href="/travels/:id/delete">Delete</a> | <a href="/travels/:id/edit">Edit</a> | <a href="/travels/logout">Logout</a>

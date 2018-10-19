@@ -1,0 +1,8 @@
+<p> Here are your travels, <%= @user.user_name %>
+<% @user.travels.each do |travel| %>
+  <div>
+    <%= travel.location %><br>
+    <%= travel.activity %> <br>
+    <%= travel.date %> 
+  </div>
+<% end %>
