@@ -3,9 +3,10 @@ class User <  ActiveRecord::Base
   has_many :travels
   has_secure_password
 
-  def self.slug
-    self.user_name.downcase.gsub(" ","-")
+  def slug
+    user_name.downcase.gsub(" ","-") if user_name
   end
+
 
 
 

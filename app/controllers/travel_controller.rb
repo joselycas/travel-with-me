@@ -20,20 +20,43 @@ class TravelController < ApplicationController
   post '/travels' do
     if logged_in? && params[:travels] != ""
       @travel = Travel.create(:location => params[:location], :activity => params[:activity], :date => params[:date])
-      redirect to '/travels'
+      redirect to '/travels/#{@travel.id}'
     else
       redirect to '/travels/new'
     end
   end
 
-  get '/travels/:id/edit' do
+  get '/travels/:id' do
     if logged_in?
       @travel = Travel.find_by(params[:id])
+      erb :'/travels/travel'
+    else
+      redirect to '/login'
+    end
+  end
+
+
+  get '/travels/:id/edit' do
+    if logged_in?
+      @travel = Travel.find_by_id(params[:id])
       if @travel.user_id = current_user.id
       erb :'/travels/edit'
     else
       redirect to '/login'
-    end
+     end
     end
   end
+
+  patch '/travels/:id' do
+   if logged_in?
+   @travel = Travel.find_by_id(params[:id])
+    if params[:location] != nil && params[:activity] != nil && params[:date] != nil
+      @travel.update(:location => params[:location], :activity => params[:activity], :date => params[:date])
+      redirect to :'/travels/#{@travel.id}'
+
+    else
+      redirect to '/'
+    end
+end
+ end
 end

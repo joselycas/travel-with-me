@@ -1,0 +1,16 @@
+<h1>Edit Your Trip</h1>
+
+<form action="/travels/<%=@travel.id%>" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="PATCH"
+  <label>Location</label><br>
+  <input type="text" name="location" id="location" value="<%= @travel.location%>"/><br><br>
+  <label>Activity</label><br>
+  <input type="text" name="activity" id="activity" value="<%= @travel.activity %>"/><br><br>
+  <label>Date</label><br>
+  <input type="text" name="date" id="date" value="<%= @travel.date %>"/><br><br>
+  <input type="submit" name="submit" id="submit" />
+</form>
+
+
+
+ 
