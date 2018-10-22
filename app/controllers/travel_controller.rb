@@ -20,8 +20,7 @@ class TravelController < ApplicationController
   post '/travels' do
     if logged_in? && params[:travels] != ""
       @travel = current_user.travels.create(:location => params[:location], :activity => params[:activity], :date => params[:date])
-      binding.pry
-      redirect to '/travels/#{@travel.id}'
+      redirect to "/travels/#{@travel.id}"
     else
       redirect to '/travels/new'
     end
@@ -29,7 +28,7 @@ class TravelController < ApplicationController
 
   get '/travels/:id' do
     if logged_in?
-      @travel = Travel.find_by(params[:id])
+      @travel = Travel.find(params[:id])
       erb :'/travels/travel'
     else
       redirect to '/login'
@@ -39,7 +38,7 @@ class TravelController < ApplicationController
 
   get '/travels/:id/edit' do
     if logged_in?
-      @travel = Travel.find_by_id(params[:id])
+      @travel = Travel.find(params[:id])
       if @travel.user_id = current_user.id
       erb :'/travels/edit'
     else
@@ -50,21 +49,22 @@ class TravelController < ApplicationController
 
   patch '/travels/:id' do
    if logged_in?
-   @travel = Travel.find_by_id(params[:id])
+   @travel = Travel.find(params[:id])
     if params[:location] != nil && params[:activity] != nil && params[:date] != nil
-      @travel = current_user.travels.update(:location => params[:location], :activity => params[:activity], :date => params[:date])
-      redirect to :"/travels/#{@travel.id}"
+      @travel.user_id = current_user.id
+      @travel.update(:location => params[:location], :activity => params[:activity], :date => params[:date])
+      redirect to "/travels/#{@travel.id}"
     else
       redirect to '/'
     end
-   end
   end
  end
 
   delete '/travels/:id/delete' do
     if logged_in?
-       @travel = Travel.find_by_id(params[:id])
+       @travel = Travel.find(params[:id])
        if @travel.user_id = current_user.id
+
          @travel.delete
     erb :'/travels/delete'
       else
@@ -72,3 +72,4 @@ class TravelController < ApplicationController
       end
     end
   end
+end
