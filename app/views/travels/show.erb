@@ -1,9 +1,9 @@
 <h1> Here are your travels,  <%= current_user.user_name %> </h1>
 
-<% @travels.each do |travel| %>
+<% current_user.travels.each do |travel| %>
 Location: <%= travel.location %><br>
 Activity: <%= travel.activity %> <br>
-Travel Date: <%= travel.date %> <br>
+Travel Date: <%= travel.travel_date%> <br>
 <% end %> <br>
 
 <a href="/travels/new">Create a new trip </a><br><br>

@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_172831) do
+ActiveRecord::Schema.define(version: 2018_10_23_180659) do
 
   create_table "travels", force: :cascade do |t|
     t.string "location"
     t.string "activity"
-    t.date "date"
+    t.date "travel_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

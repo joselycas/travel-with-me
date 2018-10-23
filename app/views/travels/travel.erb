@@ -1,6 +1,6 @@
 <p> Location: <%= @travel.location %><br>
 Activity: <%= @travel.activity %><br>
-Date: <%= @travel.date %><br> </p>
+Date: <%= @travel.travel_date %><br> </p>
 
 <form method="POST" action="/travels/<%=@travel.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">

@@ -19,7 +19,8 @@ class TravelController < ApplicationController
 
   post '/travels' do
     if logged_in? && params[:travels] != ""
-      @travel = current_user.travels.create(:location => params[:location], :activity => params[:activity], :date => params[:date])
+      @travel = current_user.travels.create(:location => params[:location], :activity => params[:activity], :travel_date => params[:travel_date])
+
       redirect to "/travels/#{@travel.id}"
     else
       redirect to '/travels/new'
@@ -52,7 +53,7 @@ class TravelController < ApplicationController
    @travel = Travel.find(params[:id])
     if params[:location] != nil && params[:activity] != nil && params[:date] != nil
       @travel.user_id = current_user.id
-      @travel.update(:location => params[:location], :activity => params[:activity], :date => params[:date])
+      @travel.update(:location => params[:location], :activity => params[:activity], :travel_date => params[:travel_date])
       redirect to "/travels/#{@travel.id}"
     else
       redirect to '/'

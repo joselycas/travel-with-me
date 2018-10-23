@@ -4,6 +4,8 @@ class User <  ActiveRecord::Base
   has_secure_password
   validates_presence_of :user_name
   validates_uniqueness_of :user_name
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, uniqueness: true
 
   def slug
     user_name.downcase.gsub(" ","-") if user_name
