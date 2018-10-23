@@ -51,7 +51,8 @@ class TravelController < ApplicationController
   patch '/travels/:id' do
    if logged_in?
    @travel = Travel.find(params[:id])
-    if params[:location] != nil && params[:activity] != nil && params[:date] != nil
+    if params[:location] != " " && params[:activity] != " " && params[:date] != " "
+      #binding.pry
       @travel.user_id = current_user.id
       @travel.update(:location => params[:location], :activity => params[:activity], :travel_date => params[:travel_date])
       redirect to "/travels/#{@travel.id}"
