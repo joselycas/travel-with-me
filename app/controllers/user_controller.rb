@@ -11,7 +11,6 @@ class UserController < ApplicationController
    else
      redirect to '/travels'
     end
-
   end
 
   post '/signup' do

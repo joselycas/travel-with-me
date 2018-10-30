@@ -19,6 +19,7 @@ class TravelController < ApplicationController
 
   post '/travels' do
     if logged_in? && params[:travels] != ""
+
       @travel = current_user.travels.create(:location => params[:location], :activity => params[:activity], :travel_date => params[:travel_date])
 
       redirect to "/travels/#{@travel.id}"
@@ -40,7 +41,7 @@ class TravelController < ApplicationController
   get '/travels/:id/edit' do
     if logged_in?
       @travel = Travel.find(params[:id])
-      if @travel.user_id = current_user.id
+      if @travel.user_id == current_user.id
       erb :'/travels/edit'
     else
       redirect to '/login'
@@ -52,12 +53,12 @@ class TravelController < ApplicationController
    if logged_in?
    @travel = Travel.find(params[:id])
     if params[:location] != " " && params[:activity] != " " && params[:date] != " "
-      #binding.pry
-      @travel.user_id = current_user.id
+      if @travel.user_id == current_user.id
       @travel.update(:location => params[:location], :activity => params[:activity], :travel_date => params[:travel_date])
       redirect to "/travels/#{@travel.id}"
     else
       redirect to '/'
+    end
     end
   end
  end
@@ -65,12 +66,11 @@ class TravelController < ApplicationController
   delete '/travels/:id/delete' do
     if logged_in?
        @travel = Travel.find(params[:id])
-       if @travel.user_id = current_user.id
-
+       if @travel.user_id == current_user.id
          @travel.delete
     erb :'/travels/delete'
       else
-        "/"
+        redirect to "/"
       end
     end
   end

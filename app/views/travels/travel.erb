@@ -1,3 +1,8 @@
+
+<div class="topnav">
+  <a href="/logout">Log Out </a> | 
+  <a href="/travels">Back to Trips</a>
+</div><br>
 <p> Location: <%= @travel.location %><br>
 Activity: <%= @travel.activity %><br>
 Date: <%= @travel.travel_date %><br> </p>
@@ -6,5 +11,9 @@ Date: <%= @travel.travel_date %><br> </p>
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Travel">
 </form>
+<!-- <form method="POST" action="/travels/<%=@travel.id%>/edit">
+  <input id="hidden" type="hidden" name="_method" value="POST">
+  <input type="submit" value="Edit Travel">
+</form> -->
 
-<a href="/travels/<%=@travel.id%>/edit">Edit Trip </a>
+  <a href="/travels/<%=@travel.id%>/edit">Edit Trip </a>
