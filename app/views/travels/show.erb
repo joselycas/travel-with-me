@@ -10,7 +10,6 @@
 
 <% current_user.travels.each do |travel| %>
 <ul><li><a href="/travels/<%=travel.id%>"> Location: <%= travel.location %></a><br> </li>
-<li>Activity: <%= travel.activity %> <br></li>
-<li>Travel Date: <%= travel.travel_date%> <br></li>
+
 </ul>
 <% end %> <br>

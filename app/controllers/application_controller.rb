@@ -34,10 +34,11 @@ end
      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
    end
 
-   # def raise_signup_error
-   #
-   # end
-
+   def authorize_user
+     if !logged_in?
+       redirect to "/login"
+     end
+   end
   end
   #helpers do
 

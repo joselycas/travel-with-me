@@ -7,6 +7,8 @@ class User <  ActiveRecord::Base
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :email, uniqueness: true
 
+
+
   def slug
     user_name.downcase.gsub(" ","-") if user_name
   end
